@@ -5,6 +5,7 @@ var pricing = require('../lib/pricing');
 var coupons = require('../lib/coupons');
 var orders = require('../lib/orders');
 var ledger = require('../lib/ledger');
+var tax = require('../lib/tax');
 
 var router = express.Router();
 
@@ -49,6 +50,7 @@ router.post('/orders', function (req, res) {
       sku: p.sku,
       name: p.name,
       hsn: p.hsn,
+      gstRate: tax.getSlabPercent(p),
       price: p.price,
       qty: q
     });
